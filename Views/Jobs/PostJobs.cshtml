@@ -1,0 +1,86 @@
+﻿@model JobPortalMVCApplication.Models.JobsModel
+@{
+    ViewData["Title"] = "Post Jobs";
+}
+
+<div class="container">
+    <div class="d-none d-sm-block mb-5 pb-4">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="contact-title">Post Your Jobs</h2>
+        </div>
+        <div class="col-lg-8">
+            @if (Context.Request.Query["result"].Contains("Success"))
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> You have posted a new job in our portal.
+                </div>
+            }
+            else if (Context.Request.Query["result"].Contains("Error"))
+            {
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Please try again after sometime.
+                </div>
+            }
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("PostJobs", "Jobs", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Company, new { @placeholder = "Enter Company Name", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.JobLocation, new { @placeholder = "Enter Job Location", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JobLocation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.JobNature, new List<SelectListItem>
+                        { new SelectListItem{Text="Part Time", Value="P"},
+                        new SelectListItem{Text="Full Time", Value="F"}}, "Please select", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JobNature, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.JobTitle, new { @placeholder = "Enter Job Title", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Salary, new { @placeholder = "Enter Salary upto in Lakhs", @class = "form-control", @onkeypress="validate(event)" , @maxlength="3" })
+                            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Vacancy, new { @placeholder = "Enter the Vacancy", @class = "form-control" ,@onkeypress="validate(event)" })
+                            @Html.ValidationMessageFor(model => model.Vacancy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.JobDescription, new { @placeholder = "Enter Job Description", @class = "form-control textareaheight textarea-editor" })
+                            @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="button button-contactForm boxed-btn">Post Jobs</button>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

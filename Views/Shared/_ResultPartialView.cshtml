@@ -1,0 +1,22 @@
+﻿ @if (Context.Request.Query["result"].Contains("Success"))
+{
+
+    @if (ViewBag.UserType == "E")
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> You have deleted the job.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> You have applied the job.
+        </div>
+    }
+ }
+else if (Context.Request.Query["result"].Contains("Error"))
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> Please try again after sometime.
+    </div>
+}

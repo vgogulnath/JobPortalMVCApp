@@ -1,0 +1,63 @@
+﻿@model List<JobPortalMVCApplication.Models.JobsModel>
+@{
+    ViewData["Title"] = "View Jobs";
+}
+<div class="job-listing-area pt-20 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-8">
+                @Html.Partial("_ResultPartialView")
+                <section class="featured-job-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="count-job mb-35">
+                                    <span>@Model.Count() Jobs found</span>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in @Model)
+                        {
+                            <div class="single-job-items mb-30">
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <img src="assets/img/icon/job-list1.png" alt="">
+                                    </div>
+                                    <div class="job-tittle job-tittle2">
+                                        <a href="~/Jobs/ViewJob/@item.Id"><h4>@item.JobTitle</h4></a>
+                                        <ul>
+                                            <li>@item.Company</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>@item.JobLocation</li>
+                                            <li>@item.Salary LPA</li>
+                                            @if (item.JobNature == "P")
+                                            {
+                                                <li>Part Time</li>
+                                            }
+                                            else
+                                            {
+                                                <li>Full Time</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="items-link items-link2 f-right">
+
+                                    @if (ViewBag.UserType == "E")
+                                    {
+                                        <a href="~/Jobs/PostJobs/@item.Id">Edit This</a>
+                                        <a href="~/Jobs/DeleteJob/@item.Id">Delete This</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Jobs/ViewJob/@item.Id">View Job Details</a>
+                                    }
+                                    <span>@item.CreatedOn.ToString("dd MMM yyyy")</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

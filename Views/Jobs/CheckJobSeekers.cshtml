@@ -1,0 +1,48 @@
+﻿@model List<JobPortalMVCApplication.Models.UserRegisterModel>
+@{
+    ViewData["Title"] = "View Jobs";
+}
+
+<div class="job-listing-area pt-20 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-8">
+                @Html.Partial("_ResultPartialView")
+                <section class="featured-job-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="count-job mb-35">
+                                    <span>@Model.Count() Applied Users found</span>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in @Model)
+                        {
+                            <div class="single-job-items mb-30">
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <img src="assets/img/icon/job-list1.png" alt="">
+                                    </div>
+                                    <div class="job-tittle job-tittle2">
+                                        <a><h4>@item.Name</h4></a>
+                                        <ul>
+                                            <li>Company : @item.CurrentCompany</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>Email : @item.Email</li>
+                                            <li>Current CTC : @item.CurrentCTC LPA</li>
+                                            <li>Experience : @item.Experience</li>
+                                            <li>Phone : @item.Phone</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="items-link items-link2 f-right">
+                                    <span>Applied on : @item.UpdateOn.ToString("dd MMM yyyy")</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

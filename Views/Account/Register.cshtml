@@ -1,0 +1,97 @@
+﻿@model JobPortalMVCApplication.Models.UserRegisterModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<div class="container">
+    <div class="d-none d-sm-block mb-5 pb-4">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="contact-title">Register</h2>
+        </div>
+        <div class="col-lg-8">
+            @if (Context.Request.Query["result"].Contains("Success"))
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> You are registered in our portal.
+                </div>
+            }
+            else if (Context.Request.Query["result"].Contains("Error"))
+            {
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Please try again after sometime.
+                </div>
+            }
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                <div class="row">
+                    @Html.HiddenFor(m => m.Id, "0")
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.UserType, new List<SelectListItem>
+                            { new SelectListItem{Text="Employer", Value="E"},
+                            new SelectListItem{Text="Jobseekar", Value="J"}}, "Please select", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Name, new { @placeholder = "Enter your name", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                       </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, new { @placeholder = "Enter email address", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Enter your Password", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Phone, new { @placeholder = "Enter your Phone Number", @class = "form-control" , @onkeypress="validate(event)" , @maxlength="10" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                   </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.CurrentCompany, new { @placeholder = "Enter Current Company", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CurrentCompany, "", new { @class = "text-danger" })
+              </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Experience, new { @placeholder = "Total Experience", @class = "form-control" , @onkeypress="validate(event)" })
+                            @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+                 </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.SkillSet, new { @placeholder = "Skill Set", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SkillSet, "", new { @class = "text-danger" })
+                       </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.CurrentCTC, new { @placeholder = "Current CTC", @class = "form-control", @onkeypress="validate(event)" })
+                            @Html.ValidationMessageFor(model => model.CurrentCTC, "", new { @class = "text-danger" })
+                       </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="button button-contactForm boxed-btn">Register</button>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

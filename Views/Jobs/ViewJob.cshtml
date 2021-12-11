@@ -1,0 +1,87 @@
+﻿@model JobPortalMVCApplication.Models.JobsModel
+@{
+    ViewData["Title"] = "View Jobs";
+}
+
+<div class="job-post-company pt-20 pb-20">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-8 col-lg-8">
+                        <!-- job single -->
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="#">
+                                        <h4>@Model.JobTitle</h4>
+                                    </a>
+                                    <ul>
+                                        <li>@Model.Company</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>@Model.JobLocation</li>
+                                        <li>@Model.Salary LPA</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                               <p>                                
+                                   @Html.Raw(Model.JobDescription)</p> 
+                           </div>
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Job Overview</h4>
+                           </div>
+                          <ul>
+                              <li>Posted date : <span>@Model.CreatedOn.ToString("dd MMM yyyy")</span></li>
+                              <li>Location : <span>@Model.JobLocation</span></li>
+                              <li>Vacancy : <span>@Model.Vacancy</span></li>
+                        @if (Model.JobNature == "P")
+                        {
+                            <li>Job nature : <span>Full time</span></li>
+                        }
+                        else
+                        {
+                            <li>Job nature : <span>Part time</span></li>
+                        }
+                        <li>Salary :  <span>@Model.Salary LPA</span></li>
+                          </ul>
+                         <div class="apply-btn2" style="line-height: 4;">
+                              @if (ViewBag.UserType == "E")
+                                    {
+                                        <a class="btn" href="../PostJobs/@Model.Id">Edit</a>
+                                        <a class="btn" href="../DeleteJob/@Model.Id">Delete</a>
+                            <a class="btn" href="../CheckJobSeekers/@Model.Id">Check Applied Jobseekers</a>
+                        }
+                        else
+                        {
+                            if (!@Model.IsApplied)
+                            {
+                                <a href="../ApplyJob/@Model.Id" class="btn">Apply Now</a>
+                            }
+                            else
+                            {
+                                <span class="btn">Already Applied</span>
+                            }
+                        }
+                         </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>

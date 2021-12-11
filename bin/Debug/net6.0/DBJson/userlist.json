@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "EcrQHBVX",
+    "Name": "Employer Name",
+    "Email": "employer@gmail.com",
+    "Password": "12345",
+    "Phone": "9876754343",
+    "CurrentCompany": "HCL Technology",
+    "Experience": "10",
+    "SkillSet": "HR",
+    "CurrentCTC": "15",
+    "CreatedOn": "2021-12-11T14:27:14.5068552+05:30",
+    "UpdateOn": "2021-12-11T14:27:14.5066524+05:30",
+    "UserType": "E"
+  },
+  {
+    "Id": "WNHhemj2",
+    "Name": "Job Seeker",
+    "Email": "jobseeker@gmail.com",
+    "Password": "12345",
+    "Phone": "4983909509",
+    "CurrentCompany": "HCL Technology",
+    "Experience": "10",
+    "SkillSet": "Asp.net, MVC, C#",
+    "CurrentCTC": "12",
+    "CreatedOn": "2021-12-11T14:27:56.1846876+05:30",
+    "UpdateOn": "2021-12-11T14:27:56.1846855+05:30",
+    "UserType": "J"
+  }
+]
